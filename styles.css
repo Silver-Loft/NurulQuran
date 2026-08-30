@@ -1,0 +1,399 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+/* Color Variables */
+:root {
+  --primary: #047857;
+  --primary-light: #059669;
+  --primary-dark: #064e3b;
+  --primary-deep: #022c22;
+  
+  --gold: #d97706;
+  --gold-light: #f59e0b;
+  --gold-dark: #b45309;
+
+  --bg-light: #f8faf9;
+  --text-light: #0f172a;
+  --card-light: #ffffff;
+  --border-light: #e2e8f0;
+
+  --bg-dark: #03130c;
+  --text-dark: #f1f5f9;
+  --card-dark: #082216;
+  --border-dark: #113824;
+  
+  --font-amiri: 'Amiri', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dark Mode Defaults */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(4, 120, 87, 0.20);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(4, 120, 87, 0.40);
+}
+
+/* Custom CSS Helpers */
+.glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(4, 120, 87, 0.1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .glass {
+    background: rgba(8, 34, 22, 0.75);
+    border: 1px solid rgba(17, 56, 36, 0.3);
+  }
+}
+
+/* Pulse Animation */
+@keyframes pulse-gold {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: .8;
+    transform: scale(1.02);
+  }
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 3s infinite ease-in-out;
+}
+
+/* Quranic Text Styling */
+.quran-text {
+  font-family: var(--font-amiri);
+  line-height: 2.2;
+  direction: rtl;
+}
+
+/* Modal Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Active Verse Highlight during Audio Playback */
+.verse-active {
+  border-left: 4px solid #d97706 !important;
+  background-color: rgba(4, 120, 87, 0.08) !important;
+  transition: all 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  .verse-active {
+    background-color: rgba(4, 120, 87, 0.16) !important;
+  }
+}
+
+
+/* Modal and layout improvements */
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+/* Smooth transition for active prayer row */
+.prayer-active-row {
+  background-color: rgba(4, 120, 87, 0.15) !important;
+  border-color: rgba(4, 120, 87, 0.6) !important;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.5; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(0.95); opacity: 0.5; }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s infinite ease-in-out;
+}
+
+/* ================= NEW DASHBOARD WIDGETS STYLES ================= */
+
+/* Tab Navigation */
+.tab-btn {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tab-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  width: 0;
+  height: 2.5px;
+  background: #047857;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+.tab-btn.tab-active {
+  color: #047857 !important;
+  font-weight: 700;
+}
+.tab-btn.tab-active::after {
+  width: 70%;
+}
+
+/* Tasbeeh Counter Button */
+.tasbeeh-btn {
+  background: radial-gradient(circle at center, rgba(4, 120, 87, 0.1) 0%, rgba(6, 95, 70, 0.02) 100%);
+  border: 2px solid rgba(4, 120, 87, 0.2);
+  box-shadow: 0 10px 25px -5px rgba(6, 95, 70, 0.05), inset 0 2px 10px rgba(255, 255, 255, 0.6);
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tasbeeh-btn:hover {
+  border-color: rgba(4, 120, 87, 0.4);
+  box-shadow: 0 12px 30px -5px rgba(6, 95, 70, 0.1), inset 0 2px 10px rgba(255, 255, 255, 0.8);
+}
+.tasbeeh-btn:active {
+  transform: scale(0.96) translateY(2px);
+  box-shadow: 0 5px 15px -3px rgba(6, 95, 70, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  .tasbeeh-btn {
+    background: radial-gradient(circle at center, rgba(4, 120, 87, 0.12) 0%, rgba(15, 23, 42, 0.2) 100%);
+    border-color: rgba(4, 120, 87, 0.25);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.05);
+  }
+  .tasbeeh-btn:hover {
+    border-color: rgba(4, 120, 87, 0.45);
+  }
+}
+
+/* Calendar Grid */
+.calendar-day-cell {
+  position: relative;
+  min-height: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+.calendar-day-cell:hover:not(.calendar-empty) {
+  background-color: rgba(4, 120, 87, 0.08);
+}
+.calendar-day-today {
+  border: 1.5px solid #047857;
+  background-color: rgba(4, 120, 87, 0.05) !important;
+}
+.calendar-day-event {
+  background-color: rgba(217, 119, 6, 0.05);
+  border: 1px dashed rgba(217, 119, 6, 0.4);
+}
+.calendar-day-event::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  width: 4px;
+  height: 4px;
+  background-color: #d97706;
+  border-radius: 50%;
+}
+
+/* Tooltip */
+.has-tooltip:hover .tooltip-box {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -8px);
+}
+.tooltip-box {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* Books / Reader Animations */
+.book-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.book-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 15px 30px -10px rgba(4, 120, 87, 0.15);
+}
+
+.reader-modal {
+  transition: opacity 0.25s ease-out;
+}
+.reader-modal-content {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Zakat Calculator & Mosque Locator Styles */
+.zakat-result-card {
+  background: linear-gradient(135deg, rgba(6, 95, 70, 0.05) 0%, rgba(4, 120, 87, 0.05) 100%);
+  border: 1.5px solid rgba(4, 120, 87, 0.2);
+}
+.zakat-history-log {
+  max-height: 180px;
+  overflow-y: auto;
+}
+#mosque-map {
+  width: 100%;
+  height: 380px;
+  border-radius: 20px;
+  z-index: 10;
+  border: 1px solid rgba(6, 95, 70, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+@media (prefers-color-scheme: dark) {
+  #mosque-map {
+    border-color: rgba(17, 56, 36, 0.3);
+    /* Dark map filter to soften tiles in dark mode */
+    filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%);
+  }
+}
+/* Leaflet Popup overrides to fit theme */
+.leaflet-popup-content-wrapper {
+  background: white !important;
+  color: #0f172a !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(4, 120, 87, 0.2) !important;
+  font-family: inherit !important;
+}
+.leaflet-popup-tip {
+  background: white !important;
+}
+@media (prefers-color-scheme: dark) {
+  .leaflet-popup-content-wrapper {
+    background: #082216 !important;
+    color: #f1f5f9 !important;
+    border: 1px solid #113824 !important;
+  }
+  .leaflet-popup-tip {
+    background: #082216 !important;
+  }
+}
+
+/* Responsive overrides for ultra-small screens */
+@media (max-width: 375px) {
+  .glass {
+    padding: 1rem !important;
+  }
+  h2, h3 {
+    font-size: 1.1rem !important;
+  }
+  .quran-text {
+    font-size: 1.4rem !important;
+    line-height: 1.8 !important;
+  }
+}
+
+/* Logo hover & micro-animations */
+.logo-ray {
+  transition: transform 0.3s ease, stroke 0.3s ease, color 0.3s ease;
+  transform-origin: 12px 8.5px;
+}
+.group:hover .logo-ray {
+  transform: translateY(-1.5px) scaleY(1.15);
+  stroke: #f59e0b !important;
+  color: #f59e0b !important;
+}
+.logo-book {
+  transition: transform 0.3s ease;
+  transform-origin: 12px 19.5px;
+}
+.group:hover .logo-book {
+  transform: scaleX(1.03);
+}
+
+/* Sidebar Button Premium Styles */
+.sidebar-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-btn::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, rgba(4, 120, 87, 0.08) 0%, rgba(4, 120, 87, 0.02) 100%);
+  border-left: 3.5px solid #047857;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+  opacity: 0;
+  border-radius: 0 8px 8px 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .sidebar-btn::before {
+    background: linear-gradient(90deg, rgba(5, 150, 105, 0.15) 0%, rgba(5, 150, 105, 0.03) 100%);
+    border-left-color: #059669;
+  }
+}
+
+.sidebar-btn:hover::before {
+  width: 100%;
+  opacity: 1;
+}
+
+.sidebar-btn > span {
+  position: relative;
+  z-index: 10;
+}
+
+
+
